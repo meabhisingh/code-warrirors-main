@@ -1,12 +1,19 @@
-import { authenticateUser } from "@/actions/project";
+// import { authenticateUser } from "@/actions/project";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 import { Separator } from "@/components/ui/separator";
-import { User } from "@prisma/client";
+// import { User } from "@prisma/client";
+
+type User = {
+  name: string;
+  email: string;
+  password?: string;
+};
 
 const Page = async () => {
-  const user = await authenticateUser();
+  // const user = await authenticateUser();
+  const user = { name: "John Doe", email: "" };
 
   return (
     <div className="space-y-6">

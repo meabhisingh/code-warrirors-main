@@ -1,5 +1,5 @@
-import { updateProfile } from "@/actions/user";
-import { getUser } from "@/auth";
+// import { updateProfile } from "@/actions/user";
+// import { getUser } from "@/auth";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
@@ -7,9 +7,14 @@ import { Separator } from "@/components/ui/separator";
 import { User } from "next-auth";
 import React from "react";
 
+const updateProfile = async () => {
+  "use server";
+};
+
 // Add form to update Profile
 const Page = async () => {
-  const user = await getUser();
+  // const user = await getUser();
+  const user = { name: "John Doe", email: "" };
 
   return (
     <div className="space-y-6">

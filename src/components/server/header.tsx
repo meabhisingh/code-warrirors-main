@@ -411,7 +411,7 @@ const Header = () => {
               <ul className="grid w-[400px] gap-3 p-4 md:w-[500px] md:grid-cols-2 lg:grid-cols-3 lg:w-[800px]">
                 {courses.map((course) => (
                   <ListItem
-                    key={course.title}
+                    key={course.href}
                     title={course.title}
                     href={course.href}
                   >
@@ -429,7 +429,7 @@ const Header = () => {
                 {study.map((i) => (
                   <Link
                     className="hover:bg-zinc-100 hover:dark:bg-zinc-900 p-4 flex justify-center  items-center text-center rounded-md"
-                    key={i.title}
+                    key={`https://study.${domain}${i.href}`}
                     target="blank"
                     href={`https://study.${domain}${i.href}`}
                   >
@@ -446,7 +446,7 @@ const Header = () => {
               <ul className="grid w-[400px] gap-3 p-4 md:w-[500px] md:grid-cols-2 lg:grid-cols-3 lg:w-[800px]">
                 {practices.map((practice) => (
                   <ListItem
-                    key={practice.title}
+                    key={`https://playground.${domain}${practice.href}`}
                     title={practice.title}
                     href={`https://playground.${domain}${practice.href}`}
                   >
@@ -463,7 +463,7 @@ const Header = () => {
               <ul className="grid w-[400px] gap-3 p-4 md:w-[500px] md:grid-cols-2  lg:w-[800px]">
                 {interviews.map((interview) => (
                   <ListItem
-                    key={interview.title}
+                    key={`https://interviews.${domain}${interview.href}`}
                     title={interview.title}
                     href={`https://interviews.${domain}${interview.href}`}
                   >
