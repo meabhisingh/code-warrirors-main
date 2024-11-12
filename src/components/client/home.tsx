@@ -1,68 +1,52 @@
 "use client";
 import { BackgroundBeamsWithCollision } from "@/components/ui/background-beams-with-collision";
-import { motion } from "framer-motion";
+import { extractValueParts } from "@/utils/helpers";
+import { animate, motion, useMotionValue, useTransform } from "framer-motion";
 import { BarChart4, Briefcase, Clock, Star, User } from "lucide-react";
-import { Fragment } from "react";
+import { Fragment, useEffect } from "react";
+import { CardBody, CardContainer, CardItem } from "../ui/3d-card";
 import { LampContainer } from "../ui/lamp";
 import { TypewriterEffect } from "../ui/typewriter-effect";
-import { CardBody, CardContainer, CardItem } from "../ui/3d-card";
 
-export const HomeSectionTwo = () => {
-  return (
-    <LampContainer>
-      <motion.h1
-        initial={{ opacity: 0.5, y: 100 }}
-        whileInView={{ opacity: 1, y: 0 }}
-        transition={{
-          delay: 0.3,
-          duration: 0.8,
-          ease: "easeInOut",
-        }}
-        className="mt-8 bg-gradient-to-br from-slate-300 to-slate-500 py-4 bg-clip-text text-center text-4xl font-medium tracking-tight text-transparent md:text-7xl"
-      >
-        Build lamps <br /> the right way
-      </motion.h1>
-    </LampContainer>
-  );
-};
+const textClassName = "text-white text-2xl font-mono ";
 
 const words = [
   {
     text: "Become",
-    className: "text-white text-9xl   ",
+    className: textClassName,
   },
 
   {
     text: "Top",
-    className: "text-white  text-9xl   ",
+    className: textClassName,
   },
   {
     text: "1%",
-    className: "text-white  text-9xl   ",
+    className: textClassName,
   },
   {
     text: "Coder",
-    className: "text-white  text-9xl  ",
+    className: textClassName,
   },
   {
     text: "In",
-    className: "text-white  text-9xl  ",
+    className: textClassName,
   },
   {
     text: "The",
-    className: "text-white  text-9xl   ",
+    className: textClassName,
   },
   {
     text: "World.",
-    className: "text-cyan-500  text-9xl   ",
+    className: textClassName + "  text-cyan-500",
   },
 ];
 
 export const HomeTypewriterEffect = () => {
   return (
     <TypewriterEffect
-      cursorClassName="bg-cyan-500"
-      className="text-left  text-9xl "
+      cursorClassName="bg-cyan-500 "
+      className="text-center"
       words={words}
     />
   );
@@ -102,6 +86,29 @@ const achievements = [
   },
 ];
 
+const AchievementCard = ({ value }: { value: string }) => {
+  const count = useMotionValue(0);
+  const rounded = useTransform(count, Math.round);
+
+  const { numberValue, suffixValue } = extractValueParts(value);
+
+  useEffect(() => {
+    const animation = animate(count, numberValue, {
+      duration: 10,
+      ease: "easeOut",
+    });
+
+    return animation.stop;
+  }, [count, numberValue]);
+
+  return (
+    <div className="flex  font-bold text-2xl">
+      <motion.p>{rounded}</motion.p>
+      {suffixValue}
+    </div>
+  );
+};
+
 export const HomeAchievement = () => {
   return achievements.map((achievement, index) => (
     <Fragment key={index}>
@@ -110,11 +117,11 @@ export const HomeAchievement = () => {
           backdropFilter: "blur(10px)",
           padding: "1rem",
         }}
-        className="flex gap-2 items-center rounded-md "
+        className="flex gap-2 items-center rounded-md bg-opacity-40 bg-black "
       >
         {achievement.icon}
         <div>
-          <p className="  font-bold text-2xl">{achievement.value}</p>
+          <AchievementCard value={achievement.value} />
           <span className="text-lg text-muted-foreground ">
             {achievement.title}
           </span>
@@ -144,39 +151,50 @@ export const HomeBeamCard = () => {
 
 export const HomeBookNow = () => {
   return (
-    <CardContainer className="inter-var">
-      <CardBody className="bg-gray-50 relative group/card  dark:hover:shadow-2xl dark:hover:shadow-emerald-500/[0.1] dark:bg-black dark:border-white/[0.2] border-black/[0.1] w-auto sm:w-[30rem] h-auto rounded-xl p-6 border  ">
+    <CardContainer containerClassName="py-0" className="inter-var">
+      <CardBody className=" space-y-6 relative group/card h-full  hover:shadow-2xl hover:shadow-emerald-500/[0.1] bg-zinc-950   w-auto sm:w-[30rem] p-6   ">
         <CardItem
           translateZ="50"
-          className="text-xl font-bold text-neutral-600 dark:text-white"
+          className="text-xl font-bold text-center  w-full  text-white"
         >
           Get a free trial now
         </CardItem>
         <CardItem
           as="p"
           translateZ="60"
-          className="text-neutral-500 text-sm max-w-sm mt-2 dark:text-neutral-300"
+          className="text-sm max-w-sm mt-2 text-neutral-300"
         >
           Watch a live class, get your doubts cleared, and participate in
           quizzes.
         </CardItem>
-        <div className="flex justify-between items-center mt-20">
-          <CardItem
-            translateZ={20}
-            className="px-4 py-2 rounded-xl text-xs font-normal dark:text-white"
-          >
-            Try now for free →
-          </CardItem>
-          <CardItem
-            data-firebolt-zoom
-            translateZ={20}
-            as="button"
-            className="px-4 py-2 rounded-xl bg-black dark:bg-white dark:text-black text-white text-xs font-bold"
-          >
-            Book Now
-          </CardItem>
-        </div>
+        <CardItem
+          data-firebolt-zoom
+          translateZ={20}
+          as="button"
+          className="px-4 py-2  my-4 rounded-xl  bg-white text-black text-xs font-bold"
+        >
+          Book Now
+        </CardItem>
       </CardBody>
     </CardContainer>
+  );
+};
+
+export const HomeSectionTwo = () => {
+  return (
+    <LampContainer>
+      <motion.h1
+        initial={{ opacity: 0.5, y: 100 }}
+        whileInView={{ opacity: 1, y: 0 }}
+        transition={{
+          delay: 0.3,
+          duration: 0.8,
+          ease: "easeInOut",
+        }}
+        className="mt-8 bg-gradient-to-br from-slate-300 to-slate-500 py-4 bg-clip-text text-center text-4xl font-medium tracking-tight text-transparent md:text-7xl"
+      >
+        Premium Courses <br /> with <br /> Lab Access
+      </motion.h1>
+    </LampContainer>
   );
 };

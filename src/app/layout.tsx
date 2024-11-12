@@ -1,21 +1,11 @@
-import type { Metadata } from "next";
-import localFont from "next/font/local";
-import "./globals.css";
-import { ThemeProvider } from "@/components/client/providers";
 import { Cursor } from "@/components/client/cursor";
-import Header from "@/components/server/header";
+import { ThemeProvider } from "@/components/client/providers";
+import ScrollIndicator from "@/components/client/scroll-indigator";
 import Footer from "@/components/server/footer";
-
-const geistSans = localFont({
-  src: "./fonts/GeistVF.woff",
-  variable: "--font-geist-sans",
-  weight: "100 900",
-});
-const geistMono = localFont({
-  src: "./fonts/GeistMonoVF.woff",
-  variable: "--font-geist-mono",
-  weight: "100 900",
-});
+import Header from "@/components/server/header";
+import type { Metadata } from "next";
+import "./globals.css";
+import { barlowCondensed, inter, roboto_mono, ubuntu } from "./fonts";
 
 export const metadata: Metadata = {
   title: "Code Warriros",
@@ -28,13 +18,14 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="en">
+    <html className="hide-scrollbar" lang="en">
       <body
-        className={`${geistSans.variable} ${geistMono.variable} antialiased`}
+        className={`cursor-none ${inter.className} ${roboto_mono.variable} ${ubuntu.variable} ${barlowCondensed.variable} antialiased  `}
       >
         <ThemeProvider>
           <>
             <Header />
+            <ScrollIndicator />
             {children}
             <Footer />
             <Cursor />

@@ -15,4 +15,18 @@ const getOrSetLocalStorage = ({ key, value }: PropType) => {
   }
 };
 
-export { getOrSetLocalStorage };
+const extractValueParts = (value: string) => {
+  const match = value.match(/^(\d+)(\D+)$/);
+  if (match) {
+    return {
+      numberValue: parseInt(match[1]) || 0,
+      suffixValue: match[2],
+    };
+  }
+  return {
+    numberValue: 0,
+    suffixValue: "",
+  };
+};
+
+export { getOrSetLocalStorage, extractValueParts };

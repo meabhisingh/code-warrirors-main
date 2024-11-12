@@ -14,6 +14,7 @@ const Cursor = () => {
       color={theme === "dark" ? "white" : "white"}
       mode={theme === "dark" ? "difference" : "difference"}
       size={40}
+      zoom="2"
     />
   );
 };

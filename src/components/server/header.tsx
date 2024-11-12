@@ -389,7 +389,7 @@ const interviews: { title: string; href: string; description: string }[] = [
   },
 ];
 
-// type subdomains = "blogs" | "jobs" | "interviews" | "study" | "playground";
+// type subdomains = "blogs" | "jobs" | "interview" | "study" | "playground";
 
 const domain = "serverless.com";
 const user = true;
@@ -400,7 +400,7 @@ const Header = () => {
     <header className="z-50 sticky top-0 bg-white dark:bg-zinc-950 dark:text-white flex items-center px-6 py-2">
       <h3 className="text-xl font-sans uppercase font-bold flex gap-2 items-center mr-auto">
         {/* <Image src="/katana.svg" width={30} height={30} alt="logo" /> */}
-        Code Warriors
+        CW
       </h3>
 
       <NavigationMenu>
@@ -463,9 +463,9 @@ const Header = () => {
               <ul className="grid w-[400px] gap-3 p-4 md:w-[500px] md:grid-cols-2  lg:w-[800px]">
                 {interviews.map((interview) => (
                   <ListItem
-                    key={`https://interviews.${domain}${interview.href}`}
+                    key={`https://interview.${domain}${interview.href}`}
                     title={interview.title}
-                    href={`https://interviews.${domain}${interview.href}`}
+                    href={`https://interview.${domain}${interview.href}`}
                   >
                     {interview.description}
                   </ListItem>
