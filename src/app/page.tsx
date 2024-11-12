@@ -4,24 +4,11 @@ import {
   HomeSectionTwo,
   HomeTypewriterEffect,
 } from "@/components/client/home";
-import TextHoverEffect from "@/components/ui/text-gradient-onhover";
 import { Timeline } from "@/components/ui/timeline";
-import {
-  Book,
-  BookIcon,
-  Code,
-  Code2,
-  Code2Icon,
-  HelpCircle,
-  HelpCircleIcon,
-  Video,
-  VideoIcon,
-} from "lucide-react";
+import { BookIcon, Code2Icon, HelpCircleIcon, VideoIcon } from "lucide-react";
 import dynamic from "next/dynamic";
 import Image from "next/image";
 import Link from "next/link";
-import { SparklesCore } from "@/components/ui/sparkles";
-import { VideoPlayer } from "6pp";
 
 const RobotScene = dynamic(() => import("@/components/client/canvas"), {
   ssr: false,
