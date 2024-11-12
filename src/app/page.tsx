@@ -173,7 +173,7 @@ export default function Home() {
         /> */}
         <main className=" w-full flex flex-col text-center gap-8  items-center p-32 ">
           <span className="flex-none text-8xl bg-gradient-to-r from-pink-500 to-yellow-500 bg-clip-text text-transparent font-barlow-condensed">
-            World's Most <br /> Premium Courses
+            World&apos;s Most <br /> Premium Courses
           </span>
 
           <HomeTypewriterEffect />
